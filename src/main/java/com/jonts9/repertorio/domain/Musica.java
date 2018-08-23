@@ -1,5 +1,6 @@
 package com.jonts9.repertorio.domain;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Musica {
@@ -27,15 +28,17 @@ public class Musica {
 	public void setNomePrincipal(String nomePrincipal) {
 		getNomesAlternativos().remove(nomePrincipal);
 		if(nomePrincipal != null && !nomePrincipal.equals("")) {
-			//TODO addNomesAlternativos
+			addNomesAlternativos(getNomePrincipal());
 		}
 		this.nomePrincipal = nomePrincipal;
 	}
 	public List<String> getNomesAlternativos() {
-		return nomesAlternativos;
+		return nomesAlternativos != null ? nomesAlternativos : new ArrayList<String>();
 	}
-	public void setNomesAlternativos(List<String> nomesAlternativos) {
-		this.nomesAlternativos = nomesAlternativos;
+	public void addNomesAlternativos(String nomeAlternativo) {
+		if (!getNomesAlternativos().contains(nomeAlternativo)) {
+			getNomesAlternativos().add(nomeAlternativo);
+		}
 	}
 	public String getAutor() {
 		return autor;
